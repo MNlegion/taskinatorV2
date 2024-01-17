@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Taskinator Project</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>Taskinator</h1>
-        <p>Click the button below to add a new task!</p>
-        <button type="submit">Add Task</button>
+      <h1 class="page-title">Taskinator</h1>
+      <p>Click the button below to add a new task!</p>
+      <button type="submit" class="btn">Add Task</button>
     </header>
 
-    <main>
-        <h2>Tasks To Do</h2>
+    <main class="page-content">
+      <section class="task-list-wrapper">
+        <h2 class="list-title">Tasks To Do</h2>
+        <ul class="task-list">
+          <li class="task-item">Task 1</li>
+        </ul>
+      </section>
     </main>
 
     <footer>
-        <h3>By MNlegion</h3>
+      <h3> &copy;2024 By MNlegion</h3>
     </footer>
-    
 
     <script src="./assets/js/script.js"></script>
-</body>
+  </body>
 </html>
