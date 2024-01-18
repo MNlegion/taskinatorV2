@@ -1,3 +1,3 @@
 # taskinatorV2
 
-# Practicing DOM handling
+# Using this project to practice DOM handling and event listeners
