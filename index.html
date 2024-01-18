@@ -12,16 +12,19 @@
       <p>Click the button below to add a new task!</p>
       <form id="task-form">
         <div class="form-group">
+          <select name="task-type" class="select-dropdown">
+            <option value="" disabled selected>Pick a task type</option>
+            <option value="House Items">House Items</option>
+            <option value="Subscriptions">Subscriptions</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Weekly Schedule">Weekly Schedule</option>
+          </select>
+        </div>
+        <div class="form-group">
           <input type="text" name="task-name" placeholder="Enter Task Name">
         </div>
         <div class="form-group">
-          <select name="task-type" class="select-dropdown">
-            <option value="" disabled selected>Pick a task type</option>
-            <option value="HouseItems">House Items</option>
-            <option value="Subscriptions">Subscriptions</option>
-            <option value="Groceries">Groceries</option>
-            <option value="WeeklySchedule">Weekly Schedule</option>
-          </select>
+          <input type="date" name="due-date" placeholder="Enter Date">
         </div>
         <div class="form-group">
           <button class="btn" id="save-task" type="submit">Add Task</button>
