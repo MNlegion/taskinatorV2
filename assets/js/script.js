@@ -23,18 +23,18 @@ var taskFormHandler = function (event) {
   var isEdit = formEl.hasAttribute("data-task-id");
   // has data attribute, so get task id and call function to complete edit process
   if (isEdit) {
-      var taskId = formEl.getAttribute("data-task-id");
-      completeEditTask(taskNameInput, taskTypeInput, taskDueDateInput, taskId);
+    var taskId = formEl.getAttribute("data-task-id");
+    completeEditTask(taskNameInput, taskTypeInput, taskDueDateInput, taskId);
   }
   // no data attribute, so create object as normal and pass to createTaskEl function
   else {
     var taskDataObj = {
-        name: taskNameInput,
-        type: taskTypeInput,
-        dueDate: taskDueDateInput,
+      name: taskNameInput,
+      type: taskTypeInput,
+      dueDate: taskDueDateInput,
     };
     createTaskEl(taskDataObj);
-  };
+  }
 };
 
 var createTaskEl = function (taskDataObj) {
@@ -133,28 +133,30 @@ var taskButtonHandler = function (event) {
 };
 
 var editTask = function (taskId) {
-    console.log("editing task #" + taskId);
+  console.log("editing task #" + taskId);
 
-    // get task list item element
-    var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+  // get task list item element
+  var taskSelected = document.querySelector(
+    ".task-item[data-task-id='" + taskId + "']"
+  );
 
-    // get content from task name and type
-    var taskName = document.querySelector("h3.task-name").textContent;
-    console.log(taskName);
+  // get content from task name and type
+  var taskName = document.querySelector("h3.task-name").textContent;
+  console.log(taskName);
 
-    var taskType = document.querySelector("span.task-type").textContent;
-    console.log(taskType);
+  var taskType = document.querySelector("span.task-type").textContent;
+  console.log(taskType);
 
-    var taskDueDate = document.querySelector("span.task-due-date").textContent;
-    console.log(taskDueDate);
+  var taskDueDate = document.querySelector("span.task-due-date").textContent;
+  console.log(taskDueDate);
 
-    document.querySelector("input[name='task-name']").value = taskName;
-    document.querySelector("select[name='task-type']").value = taskType;
-    document.querySelector("input[name='due-date']").value = taskDueDate;
+  document.querySelector("input[name='task-name']").value = taskName;
+  document.querySelector("select[name='task-type']").value = taskType;
+  document.querySelector("input[name='due-date']").value = taskDueDate;
 
-    document.querySelector("#save-task").textContent = "Save Task";
+  document.querySelector("#save-task").textContent = "Save Task";
 
-    formEl.setAttribute("data-task-id", taskId);
+  formEl.setAttribute("data-task-id", taskId);
 };
 
 var completeEditTask = function (taskName, taskType, taskDueDate, taskId) {
