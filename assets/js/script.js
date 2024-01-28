@@ -134,6 +134,27 @@ var taskButtonHandler = function (event) {
   }
 };
 
+var taskStatusChangeHandler = function (event) {
+  // get the task item's id
+  var taskId = event.target.getAttribute("data-task-id");
+
+  // get the currently selected option's value and convert to lowercase
+  var statusValue = event.target.value.toLowerCase();
+
+  // find the parent task item element based on the id
+  var taskSelected = document.querySelector(
+    ".task-item[data-task-id='" + taskId + "']"
+  );
+
+  if (statusValue === "to do") {
+    tasksToDoEl.appendChild(taskSelected);
+  } else if (statusValue === "in progress") {
+    tasksInProgressEl.appendChild(taskSelected);
+  } else if (statusValue === "completed") {
+    tasksCompletedEl.appendChild(taskSelected);
+  }
+};
+
 var editTask = function (taskId) {
   console.log("editing task #" + taskId);
 
@@ -193,3 +214,4 @@ formEl.addEventListener("submit", taskFormHandler);
 pageContentEl.addEventListener("click", taskButtonHandler);
 
 // for changing status
+pageContentEl.addEventListener("change", taskStatusChangeHandler);
