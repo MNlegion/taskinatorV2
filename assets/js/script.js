@@ -1,4 +1,5 @@
 var taskIdCounter = 0;
+var tasks = [];
 
 var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
@@ -34,12 +35,15 @@ var taskFormHandler = function (event) {
       name: taskNameInput,
       type: taskTypeInput,
       dueDate: taskDueDateInput,
+      status: "to do",
     };
     createTaskEl(taskDataObj);
   }
 };
 
 var createTaskEl = function (taskDataObj) {
+  console.log(taskDataObj)
+  console.log(taskDataObj.status);
   // create list item
   var listItemEl = document.createElement("li");
   listItemEl.className = "task-item";
