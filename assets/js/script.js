@@ -25,14 +25,13 @@ var taskFormHandler = function (event) {
   document.querySelector("select[name='task-type']").selectedIndex = 0;
   document.querySelector("input[name='task-name']").value = "";
   document.querySelector("input[name='due-date']").value = "";
-  
 
   // check if task is new or one being edited by seeing if it has a data-task-id attribute
   var isEdit = formEl.hasAttribute("data-task-id");
 
   if (isEdit) {
     var taskId = formEl.getAttribute("data-task-id");
-    completeEditTask(taskNameInput, taskTypeInput, taskDueDateInput,taskId);
+    completeEditTask(taskNameInput, taskTypeInput, taskDueDateInput, taskId);
   } else {
     var taskDataObj = {
       name: taskNameInput,
@@ -45,7 +44,7 @@ var taskFormHandler = function (event) {
   }
 };
 
-var createTaskEl = function(taskDataObj) {
+var createTaskEl = function (taskDataObj) {
   var listItemEl = document.createElement("li");
   listItemEl.className = "task-item";
   listItemEl.setAttribute("data-task-id", taskIdCounter);
@@ -53,7 +52,15 @@ var createTaskEl = function(taskDataObj) {
   var taskInfoEl = document.createElement("div");
   taskInfoEl.className = "task-info";
   taskInfoEl.innerHTML =
-    "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>" + "</br>" + "<span class='task-due-date'>" + taskDataObj.dueDate + "</span>";
+    "<h3 class='task-name'>" +
+    taskDataObj.name +
+    "</h3><span class='task-type'>" +
+    taskDataObj.type +
+    "</span>" +
+    "</br>" +
+    "<span class='task-due-date'>" +
+    taskDataObj.dueDate +
+    "</span>";
   listItemEl.appendChild(taskInfoEl);
 
   var taskActionsEl = createTaskActions(taskIdCounter);
@@ -61,15 +68,21 @@ var createTaskEl = function(taskDataObj) {
 
   switch (taskDataObj.status) {
     case "to do":
-      taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 0;
+      taskActionsEl.querySelector(
+        "select[name='status-change']"
+      ).selectedIndex = 0;
       tasksToDoEl.append(listItemEl);
       break;
     case "in progress":
-      taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 1;
+      taskActionsEl.querySelector(
+        "select[name='status-change']"
+      ).selectedIndex = 1;
       tasksInProgressEl.append(listItemEl);
       break;
     case "completed":
-      taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 2;
+      taskActionsEl.querySelector(
+        "select[name='status-change']"
+      ).selectedIndex = 2;
       tasksCompletedEl.append(listItemEl);
       break;
     default:
@@ -219,7 +232,8 @@ var editTask = function (taskId) {
   var taskType = taskSelected.querySelector("span.task-type").textContent;
   console.log(taskType);
 
-  var taskDueDate = taskSelected.querySelector("span.task-due-date").textContent;
+  var taskDueDate =
+    taskSelected.querySelector("span.task-due-date").textContent;
   console.log(taskDueDate);
 
   // write values of taskName and taskType to form to be edited
@@ -257,11 +271,11 @@ var deleteTask = function (taskId) {
   saveTasks();
 };
 
-var saveTasks = function() {
+var saveTasks = function () {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
-var loadTasks = function() {
+var loadTasks = function () {
   var savedTasks = localStorage.getItem("tasks");
   // if there are no tasks, set tasks to an empty array and return out of the function
   if (!savedTasks) {
