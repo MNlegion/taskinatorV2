@@ -127,7 +127,7 @@ var createTaskActions = function (taskId) {
   return actionContainerEl;
 };
 
-var completeEditTask = function (taskName, taskType, taskId) {
+var completeEditTask = function (taskName, taskType, taskDueDate, taskId) {
   // find task list item with taskId value
   var taskSelected = document.querySelector(
     ".task-item[data-task-id='" + taskId + "']"
@@ -136,12 +136,14 @@ var completeEditTask = function (taskName, taskType, taskId) {
   // set new values
   taskSelected.querySelector("h3.task-name").textContent = taskName;
   taskSelected.querySelector("span.task-type").textContent = taskType;
+  taskSelected.querySelector("span.task-due-date").textContent = taskDueDate;
 
   // loop through tasks array and task object with new content
   for (var i = 0; i < tasks.length; i++) {
     if (tasks[i].id === parseInt(taskId)) {
       tasks[i].name = taskName;
       tasks[i].type = taskType;
+      tasks[i].dueDate = taskDueDate;
     }
   }
 
@@ -217,9 +219,13 @@ var editTask = function (taskId) {
   var taskType = taskSelected.querySelector("span.task-type").textContent;
   console.log(taskType);
 
+  var taskDueDate = taskSelected.querySelector("span.task-due-date").textContent;
+  console.log(taskDueDate);
+
   // write values of taskName and taskType to form to be edited
-  document.querySelector("input[name='task-name']").value = taskName;
   document.querySelector("select[name='task-type']").value = taskType;
+  document.querySelector("input[name='task-name']").value = taskName;
+  document.querySelector("input[name='due-date']").value = taskDueDate;
 
   // set data attribute to the form with a value of the task's id so it knows which one is being edited
   formEl.setAttribute("data-task-id", taskId);
